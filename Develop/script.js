@@ -44,11 +44,39 @@ lowerCheck = lowerCaseArray.join("");
 function generatePassword() {
   //Global variables for user inputs
   var combinedArray = [];
-  var passwordLength = prompt("Choose length between 8 to 128");
-  var specialChar = confirm("Would you like special characters?");
-  var upperCase = confirm("Would you like upper case letters?");
-  var lowerCase = confirm("Would you like lower case letters?");
-  var numberUse = confirm("Would you like to use numbers?");
+  var lengthChecker = 0;
+  while (lengthChecker > 128 || lengthChecker < 8) {
+    passwordLength = prompt("Choose length between 8 to 128");
+    var lengthChecker = Number(passwordLength);
+
+    if (isNaN(lengthChecker)) {
+      lengthChecker = 0;
+    }
+  }
+  var specialChar = false;
+  var upperCase = false;
+  var lowerCase = false;
+  var numberUse = false;
+
+  while (
+    specialChar === false &&
+    upperCase === false &&
+    lowerCase === false &&
+    numberUse === false
+  ) {
+    specialChar = confirm("Would you like special characters?");
+    upperCase = confirm("Would you like upper case letters?");
+    lowerCase = confirm("Would you like lower case letters?");
+    numberUse = confirm("Would you like to use numbers?");
+    if (
+      specialChar === false &&
+      upperCase === false &&
+      lowerCase === false &&
+      numberUse === false
+    ) {
+      alert("Select at least one set of characters.");
+    }
+  }
 
   if (specialChar) {
     combinedArray = combinedArray.concat(specialCharArray);
@@ -70,7 +98,6 @@ function generatePassword() {
 
   while (userSelections.join("") !== passwordVerification.join("")) {
     passwordVerification = [false, false, false, false];
-
     var userPassword = "";
     for (var i = 0; i < passwordLength; i++) {
       indexLocation = Math.floor(Math.random() * combinedArray.length);
