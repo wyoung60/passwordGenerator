@@ -35,15 +35,15 @@ var upperCaseArray = [];
 for (var i = 0; i < lowerCaseArray.length; i++) {
   upperCaseArray[i] = lowerCaseArray[i].toUpperCase();
 }
-var combinedArray = [];
-
-for (var i = 0; i < specialCharArray.length; i++) {
-  console.log(specialCharArray[i]);
-}
+numberCheck = numbersArray.join("");
+upperCheck = upperCaseArray.join("");
+specialCharCheck = specialCharArray.join("");
+lowerCheck = lowerCaseArray.join("");
 
 //return value for password variable in writePassword()
 function generatePassword() {
   //Global variables for user inputs
+  var combinedArray = [];
   var passwordLength = prompt("Choose length between 8 to 128");
   var specialChar = confirm("Would you like special characters?");
   var upperCase = confirm("Would you like upper case letters?");
@@ -65,14 +65,80 @@ function generatePassword() {
   if (numberUse) {
     combinedArray = combinedArray.concat(numbersArray);
   }
-  var userPassword = "";
-  for (var i = 0; i < passwordLength; i++) {
-    indexLocation = Math.floor(Math.random() * combinedArray.length);
-    tempValue = String(combinedArray[indexLocation]);
-    userPassword = userPassword + tempValue;
+  var userSelections = [specialChar, upperCase, lowerCase, numberUse];
+  var passwordVerification = [false, false, false, false];
+
+  while (userSelections.join("") !== passwordVerification.join("")) {
+    passwordVerification = [false, false, false, false];
+
+    var userPassword = "";
+    for (var i = 0; i < passwordLength; i++) {
+      indexLocation = Math.floor(Math.random() * combinedArray.length);
+      tempValue = String(combinedArray[indexLocation]);
+      userPassword = userPassword + tempValue;
+    }
+
+    function contentCheck(stringValue, indexValue) {
+      for (var i = 0; i < userPassword.length; i++) {
+        if (stringValue.indexOf(userPassword[i]) !== -1) {
+          passwordVerification[indexValue] = true;
+        } else {
+          continue;
+        }
+      }
+    }
+
+    contentCheck(specialCharCheck, 0);
+    contentCheck(upperCheck, 1);
+    contentCheck(lowerCheck, 2);
+    contentCheck(numberCheck, 3);
   }
   return userPassword;
 }
+
+// alert(userPassword);
+// console.log(numberusestring);
+// console.log(numbersArray[9]);
+
+// alert(userPassword);
+// var verifyPassword = true;
+// while (verifyPassword) {
+//   alert("In the while loop");
+// for (var i = 0; i < userPassword.length; i++) {
+//   if (numberusestring.indexOf(userPassword[i]) !== -1) {
+//     alert(numberusestring.indexOf(userPassword[i]));
+//     alert(i);
+//     return userPassword;
+//   } else {
+//     continue;
+//   }
+// }
+
+//     alert("In the for loop");
+
+//     if (userPassword[i] === String(numbersArray[0])) {
+//       alert("IN the If");
+
+//       verifyPassword = false;
+//       break;
+//     } else {
+//       continue;
+//     }
+//   }
+//   break;
+// }
+// return "Maybe";
+// alert(userPassword);
+// console.log(numbersArray);
+// console.log(userPassword.includes(numbersArray));
+// if (numberUse) {
+//   return userPassword;
+// } else {
+//   //   while(userPassword.includes(numbersArray)){
+//   //     passwordReset();
+//   // }
+//   return "hello";
+// }
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
