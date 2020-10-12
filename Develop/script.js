@@ -1,5 +1,5 @@
 //Character variables and arrays created with .from method
-var specialCharacters = ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~"';
+var specialCharacters = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~"';
 var specialCharArray = Array.from(specialCharacters);
 var numberCharacters = "1234567890";
 var numbersArray = Array.from(numberCharacters);
