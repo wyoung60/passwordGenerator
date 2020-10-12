@@ -8,7 +8,9 @@ Repository was created to build a webpage with the ability to generate a passwor
 
 The logic of the while loop was difficult to lock down initially. While loops need to be in place to ensure users enters valid responses to the prompt and the confirm commands. Difficulties included maintaining the loop until conditions were correct and choosing the correct condition to maintain the loop.
 
-##Screenshot
+## Screenshot
+
+<img src=./Develop/Screenshot.JPG>
 
 ## Links
 
